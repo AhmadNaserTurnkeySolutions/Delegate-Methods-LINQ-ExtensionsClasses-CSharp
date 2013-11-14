@@ -10,6 +10,8 @@ namespace Delegate_Part2.DAL
     public class DB
     {
 
+
+     
  private static DB instance;
    
 

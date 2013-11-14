@@ -34,18 +34,22 @@ namespace Delegate_Part2.DAL
 
       public Trainee getTraineeByName(string Name) 
       {
+         
+        
+
           var LINQSingleQuery = from t in db.GetTraineeDB() where t.Name == Name select t ;
           Trainee ReturnTrainee = null;
-          if (LINQSingleQuery == null)
-          {
-              ReturnTrainee = new Trainee();
-          }
-          else 
+
+
+          try
           {
               ReturnTrainee = LINQSingleQuery.First();
+
           }
-
-
+          catch(Exception ex)
+          {
+           //
+          }
 
           return ReturnTrainee;
       }
@@ -55,30 +59,51 @@ namespace Delegate_Part2.DAL
 
           var ts = from t in db.GetTraineeDB()
                    where t.Name.Contains(Trainee.Name) ||
-                         t.CollegeName == Trainee.CollegeName ||
+                         t.CollegeName.Contains(Trainee.CollegeName) ||
                          t.CollegeMajorScore == Trainee.CollegeMajorScore
                    select t;
 
           return ts.ToList<Trainee>();
       }
 
-      public  dynamic GroupByCollegeName(string CName)
+      public IOrderedEnumerable<IGrouping<string, Trainee>> GroupByCollegeName(string CollegeName)
       {
-          var groupByCollege = db.GetTraineeDB().GroupBy(x => x.CollegeName).Select(group => group).OrderBy(x => x.Key);
+        //  var groupByCollege = db.GetTraineeDB().GroupBy(x => x.CollegeName).Select(group => group).OrderBy(x => x.Key);
+
+          var groupByCollege = from tr in db.GetTraineeDB()
+                               group tr by tr.CollegeName into TraineeGroup
+                               where TraineeGroup.Key == CollegeName
+                               orderby TraineeGroup.Key
+                               select TraineeGroup;
+
           return groupByCollege;
       }
 
-      public Trainee GetBestTrainee(Trainee Trainee) 
+      public Trainee GetBestTrainee() 
       {
+          //double max = 0;
+          //Trainee temp = null;
 
-          return (Trainee)db.GetTraineeDB().Max(t => t);
+          //foreach( var x in db.GetTraineeDB() )
+          //{
+          //if(x.CollegeMajorScore>max)
+          //{
+          //    max = x.CollegeMajorScore;
+          //    temp = x;
+          //}
+          //}
+          //return temp;
+
+          return db.GetTraineeDB().OrderByDescending(x=>x.CollegeMajorScore).First();
       }
 
-      public Trainee GetWorstTrainee(Trainee Trainee)
+      public Trainee GetWorstTrainee()
       {
 
-          return (Trainee)db.GetTraineeDB().Min(t => t);
+          return db.GetTraineeDB().OrderBy(x => x.CollegeMajorScore).First();
       }
 
     }
+
+
 }

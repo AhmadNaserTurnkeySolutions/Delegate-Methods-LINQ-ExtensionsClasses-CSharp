@@ -28,21 +28,48 @@ namespace Delegate_Part2
         static void Main(string[] args)
         {
 
-        TraineeDAO tdao=new TraineeDAO();
+       TraineeDAO td=new TraineeDAO();
 
-       // Trainee t = tdao.getTraineeByName("Awwad Ssami");
 
-        Trainee TSearchBy = new Trainee { CollegeName="Bir",Name="a"};
-        var DaoMethodCall = tdao.GetTraineesBy(TSearchBy);
 
-        foreach (var t in DaoMethodCall)
-            {
-                PrintTrainee(t);
-            }
+
+       IOrderedEnumerable<IGrouping<string, Trainee>> cg = td.GroupByCollegeName("Birzeit");
+       PrintTraineeGroup(cg);
 
        
-        StopConsole();
 
+      // Trainee t = td.getTraineeByName("jaber Mouyad");
+       //PrintTrainee(t);
+
+
+         //   Trainee t1=td.GetBestTrainee();
+           // PrintTrainee(t1);
+
+       //Trainee TSearchBy = new Trainee { CollegeName = "Bir", Name = "Na" };
+       //var DaoMethodCall = td.GetTraineesBy(TSearchBy);
+
+       //foreach (var s in DaoMethodCall)
+       //{
+       //    PrintTrainee(s);
+       //}
+
+       
+       StopConsole();
+
+     }
+
+        private static void PrintTraineeGroup(IOrderedEnumerable<IGrouping<string, Trainee>> aa)
+        {
+            Console.WriteLine("Trainee Groupped By College:\n ");
+            foreach (var grp in aa)
+            {
+                Console.WriteLine(grp.Key + ":");
+                foreach (Trainee tre in grp)
+                {
+                    Console.WriteLine("\tName : {0}\t College: {1}", tre.Name, tre.CollegeMajorScore);
+                }
+            }
+            Console.WriteLine("-----------------------------------------------------\n");
         }
 
         private static void StopConsole()
@@ -52,12 +79,18 @@ namespace Delegate_Part2
 
         private static void PrintTrainee(Trainee tre)
         {
-            string t = "Name : " + tre.Name + "\n"+
-                        "CollegeName : " +tre.CollegeName + "\n"+
-                        "CollegeMajorScore : " +tre.CollegeMajorScore+ "\n";
-  
+         try
+            {
 
-            Console.WriteLine(t);
+                string t = "Name : " + tre.Name + "\n" +
+                            "CollegeName : " + tre.CollegeName + "\n" +
+                            "CollegeMajorScore : " + tre.CollegeMajorScore + "\n";
+                Console.WriteLine(t);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Error in data input");
+            }
         }
 
 
