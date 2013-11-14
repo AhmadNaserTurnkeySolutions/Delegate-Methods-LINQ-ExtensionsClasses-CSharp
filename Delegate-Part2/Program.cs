@@ -12,7 +12,7 @@ namespace Delegate_Part2
         delegate List<Student> StudentsDel(List<Student> stu);
 
 
-  
+
 
 
 
@@ -29,7 +29,7 @@ namespace Delegate_Part2
         {
 
         TraineeDAO tdao=new TraineeDAO();
-        Trainee t = tdao.getTraineeByName("Awwad Sami");
+        Trainee t = tdao.getTraineeByName("Awwad Ssami");
 
         PrintTrainee(t);
         StopConsole();

@@ -34,11 +34,20 @@ namespace Delegate_Part2.DAL
 
       public Trainee getTraineeByName(string Name) 
       {
-          var tr = from t in db.GetTraineeDB() where t.Name == Name select t ;
-          
-          Trainee test = tr.First();
-          
-          return test;
+          var LINQSingleQuery = from t in db.GetTraineeDB() where t.Name == Name select t ;
+          Trainee ReturnTrainee = null;
+          if (LINQSingleQuery == null)
+          {
+              ReturnTrainee = new Trainee();
+          }
+          else 
+          {
+              ReturnTrainee = LINQSingleQuery.First();
+          }
+
+
+
+          return ReturnTrainee;
       }
 
       public List<Trainee> GetTraineesBy(Trainee Trainee) 

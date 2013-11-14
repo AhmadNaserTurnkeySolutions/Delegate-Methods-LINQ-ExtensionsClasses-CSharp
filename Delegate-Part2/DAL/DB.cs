@@ -11,6 +11,7 @@ namespace Delegate_Part2.DAL
     {
 
  private static DB instance;
+   
 
    private DB() {}
 
