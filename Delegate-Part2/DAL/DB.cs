@@ -10,6 +10,24 @@ namespace Delegate_Part2.DAL
     public class DB
     {
 
+ private static DB instance;
+
+   private DB() {}
+
+   public static DB Instance
+   {
+      get 
+      {
+         if (instance == null)
+         {
+            instance = new DB();
+         }
+         return instance;
+      }
+   }
+        
+
+
       public List<Trainer> GetTrainerDB() 
         {
 
@@ -38,15 +56,15 @@ namespace Delegate_Part2.DAL
       {
           List<Trainee> List = new List<Trainee> { 
             
-            new Trainee{Name="Naser Ahmad ",CollegeMajorScore=84,CollegeName="Birzeit"},
-            new Trainee{Name="Hammad Ahmad ",CollegeMajorScore=82,CollegeName="UNO"},
-            new Trainee{Name="Awwad Sami ",CollegeMajorScore=81,CollegeName="Najah"},
-            new Trainee{Name="Gab Fadi ",CollegeMajorScore=85,CollegeName="PT"},
-            new Trainee{Name="Fiaz Israa ",CollegeMajorScore=78,CollegeName="Birzeit"},
-            new Trainee{Name="Joze Demtrics ",CollegeMajorScore=97,CollegeName="Birzeit"},
-            new Trainee{Name="Kassem Endress ",CollegeMajorScore=71,CollegeName="Ahleya"},
-            new Trainee{Name="Sayyed Emad ",CollegeMajorScore=92,CollegeName="Jordan U"},
-            new Trainee{Name="jaber Mouyad ",CollegeMajorScore=83,CollegeName="Birzeit"}
+            new Trainee{Name="Naser Ahmad",CollegeMajorScore=84,CollegeName="Birzeit"},
+            new Trainee{Name="Hammad Ahmad",CollegeMajorScore=82,CollegeName="UNO"},
+            new Trainee{Name="Awwad Sami",CollegeMajorScore=81,CollegeName="Najah"},
+            new Trainee{Name="Gab Fadi",CollegeMajorScore=85,CollegeName="PT"},
+            new Trainee{Name="Fiaz Israa",CollegeMajorScore=78,CollegeName="Birzeit"},
+            new Trainee{Name="Joze Demtrics",CollegeMajorScore=97,CollegeName="Birzeit"},
+            new Trainee{Name="Kassem Endress",CollegeMajorScore=71,CollegeName="Ahleya"},
+            new Trainee{Name="Sayyed Emad",CollegeMajorScore=92,CollegeName="Jordan U"},
+            new Trainee{Name="jaber Mouyad",CollegeMajorScore=83,CollegeName="Birzeit"}
  };
           return List;
 

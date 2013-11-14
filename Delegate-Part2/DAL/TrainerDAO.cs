@@ -8,5 +8,6 @@ namespace Delegate_Part2.DAL
 {
     class TrainerDAO
     {
+        DB db = DB.Instance;
     }
 }

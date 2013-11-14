@@ -45,6 +45,7 @@
     <Compile Include="DAL\DB.cs" />
     <Compile Include="DAL\TraineeDAO.cs" />
     <Compile Include="DAL\TrainerDAO.cs" />
+    <Compile Include="MainClass.cs" />
     <Compile Include="MODEL\Course.cs" />
     <Compile Include="MODEL\Trainee.cs" />
     <Compile Include="MODEL\Trainer.cs" />

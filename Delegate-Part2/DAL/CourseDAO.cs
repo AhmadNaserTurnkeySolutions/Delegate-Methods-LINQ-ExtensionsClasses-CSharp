@@ -8,5 +8,9 @@ namespace Delegate_Part2.DAL
 {
     class CourseDAO
     {
+        DB db = DB.Instance;
+
+
+
     }
 }
