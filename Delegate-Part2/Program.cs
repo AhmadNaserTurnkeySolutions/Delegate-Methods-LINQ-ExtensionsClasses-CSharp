@@ -29,9 +29,18 @@ namespace Delegate_Part2
         {
 
         TraineeDAO tdao=new TraineeDAO();
-        Trainee t = tdao.getTraineeByName("Awwad Ssami");
 
-        PrintTrainee(t);
+       // Trainee t = tdao.getTraineeByName("Awwad Ssami");
+
+        Trainee TSearchBy = new Trainee { CollegeName="Bir",Name="a"};
+        var DaoMethodCall = tdao.GetTraineesBy(TSearchBy);
+
+        foreach (var t in DaoMethodCall)
+            {
+                PrintTrainee(t);
+            }
+
+       
         StopConsole();
 
         }
